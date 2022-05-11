@@ -20,10 +20,19 @@ class ProductoController extends Controller
     public function index(Request $request )
     {
 
+        $nombre = $request->get('search');
+        if($nombre){
+            
+            $productos = Producto::where('categoria_id','like',"%$nombre%")->paginate();
+
+            return view('producto.index', compact('productos'))
+             ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+        }
+        
        $productos = Producto::paginate();
 
         return view('producto.index', compact('productos'))
-            ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
+          ->with('i', (request()->input('page', 1) - 1) * $productos->perPage());
     }
 
 

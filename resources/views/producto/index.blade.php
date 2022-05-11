@@ -15,15 +15,40 @@
                             <span id="card_title">
                                 {{ __('Producto') }}
                             </span>
-
+                           
                             <form>
-                                <div class="input-group rounded">
+
+                            <div class="input-group">
+                                    <select name="search" class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                                     <option selected>Categorias</option>
+                                     @foreach ($productos as $producto)
+                                      <option value="{{ $producto->categoria_id }}" >{{ $producto->categoria->nombre }}</option>
+                                      @endforeach
+                                    </select>
+                                    <button type="submit" class="btn btn-outline-secondary" type="button">Buscar</button>
+                            </div>
+                            
+                            <!--<select class="form-select" aria-label="Default select example">
+                            
+                                     <option selected>Elige la caategoria</option>
+                                    @foreach ($productos as $producto)
+                                    <option name="search" value={$producto->categoria->nombre} >{{ $producto->categoria->nombre }}</option>
+                                   
+                                    @endforeach
+                                    
+
+                            </select>-->
+  
+  
+                 <!-- <div class="input-group rounded">
                                     <input name="search" type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
                                     <span class="input-group-text border-0" id="search-addon">
-                                        <i class="fas fa-search"></i>
+                                        <i class="fas fa-search">{{ $producto->categoria->nombre }}</i>
                                     </span>
-                                </div>
+                                </div>-->
+                               
                             </form>
+                            
                             
 
                              <div class="float-right">
